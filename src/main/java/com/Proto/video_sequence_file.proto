@@ -1,0 +1,18 @@
+syntax = "proto3";
+option java_package = "com.Proto";
+option java_outer_classname = "VideoSequenceFileRecordClass";
+
+message VideoSequenceFileRecord {
+    int64 start_frame = 1;
+    int64 start_index = 2;
+    int64 end_frame = 3;
+    int64 end_index = 4;
+    int64 record_frame_number = 5;
+
+    message VideoData {
+        int64 frameNo = 1;
+        bytes frameData = 2;
+        int64 frameIndex = 3;
+    }
+    repeated VideoData record_video_data = 6;
+}
