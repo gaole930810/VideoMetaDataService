@@ -3,6 +3,7 @@ package com.VMDServiceClientAPI;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -403,7 +404,7 @@ public class Client {
 		return res;
 	}
 
-	private Set<BufferedImage> getBufferedImage(Command command, String vmdLocation) {
+	private List<BufferedImage> getBufferedImage(Command command, String vmdLocation) {
 		// TODO Auto-generated method stub
 		long[] res = new long[2];
 		String url = command.args[0];
@@ -479,9 +480,9 @@ public class Client {
 		return null;
 	}
 
-	private Set<BufferedImage> GenerateBufferedImages(String url, int frameNo, int frameSize, long[] res) {
+	private List<BufferedImage> GenerateBufferedImages(String url, int frameNo, int frameSize, long[] res) {
 		// TODO Auto-generated method stub
-		Set<BufferedImage> re= new HashSet<BufferedImage>();
+		List<BufferedImage> re= new ArrayList<BufferedImage>();
 		String Path = url;
 		URLProtocolManager mgr = URLProtocolManager.getManager();
         if (Path.startsWith("hdfs://"))

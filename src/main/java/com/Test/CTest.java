@@ -3,6 +3,7 @@ package com.Test;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
@@ -60,18 +61,21 @@ public class CTest {
 			break;
 		case "GET_FRAME_By_FrameTime":
 			url=args[1];
-			String size2 = "";
+			String startFrameTime="";
+			String endFrameTime = "";
 			if(args.length==4){
-				size2 = args[3];
+				startFrameTime=args[2];
+				endFrameTime = args[3];
 			}
 			else if(args.length==3){
-				size2 = "1";
+				startFrameTime=args[2];
+				endFrameTime = args[2];
 			}
 			else
 				break;
-			Set<BufferedImage> imageSet2=(Set<BufferedImage>)ClientAPI.GET_FRAME_By_FrameTime(url,args[2],size2).getResults();
+			List<BufferedImage> imageList2=(List<BufferedImage>)ClientAPI.GET_FRAME_By_FrameTime(url,startFrameTime,endFrameTime).getResults();
 			int number2=1;
-			for(BufferedImage bi:imageSet2){
+			for(BufferedImage bi:imageList2){
             	try {
             		
 					ImageIO.write(bi,"jpg",new File("F:\\picture\\"+number2+ ".jpg"));

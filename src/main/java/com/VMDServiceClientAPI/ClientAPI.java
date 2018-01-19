@@ -30,20 +30,20 @@ public class ClientAPI {
 		Command command=new Command(Command.VMDLS,url);		
 		return new Client("172.16.10.101:2181","/sgroup").connect(command);
 	}
-	public static Results GET_FRAME_Index_By_FrameNo(String url,String FrameSeq){
-		Command command=new Command(Command.GET_FRAME_Index,url,FrameSeq);		
+	public static Results GET_FRAME_Index_By_FrameNo(String url,String startFrameNo){
+		Command command=new Command(Command.GET_FRAME_Index,url,startFrameNo);		
 		return new Client("172.16.10.101:2181","/sgroup").connect(command);
 	}
-	public static Results GET_FRAME_By_FrameNo(String url,String FrameSeq,String Size){
-		Command command=new Command(Command.GET_FRAME,url,FrameSeq,Size);		
+	public static Results GET_FRAME_By_FrameNo(String url,String startFrameNo,String Size){
+		Command command=new Command(Command.GET_FRAME,url,startFrameNo,Size);		
 		return new Client("172.16.10.101:2181","/sgroup").connect(command);
 	}
-	public static Results GET_FRAME_Index_By_FrameTime(String url,String FrameSeq){
-		Command command=new Command(Command.GET_FRAME_Index,url,fraseFrameTimetoFrameNo(url,FrameSeq));
+	public static Results GET_FRAME_Index_By_FrameTime(String url,String startFrameTime){
+		Command command=new Command(Command.GET_FRAME_Index,fraseFrameTimetoFrameNo(url,startFrameTime));
 		return new Client("172.16.10.101:2181","/sgroup").connect(command);
 	}
-	public static Results GET_FRAME_By_FrameTime(String url,String FrameSeq,String Size){
-		Command command=new Command(Command.GET_FRAME,url,fraseFrameTimetoFrameNo(url,FrameSeq),Size);
+	public static Results GET_FRAME_By_FrameTime(String url,String startFrameTime,String endFrameTime){
+		Command command=new Command(Command.GET_FRAME,fraseFrameTimetoFrameNo(url,startFrameTime,endFrameTime));
 		return new Client("172.16.10.101:2181","/sgroup").connect(command);
 	}
 	
@@ -69,7 +69,7 @@ public class ClientAPI {
 		return new Client("172.16.10.101:2181","/sgroup").connect(command);
 	}
 	
-	private static String fraseFrameTimetoFrameNo(String Path, String timeoftargetFrame) {
+	private static String[] fraseFrameTimetoFrameNo(String Path, String... targetFrameTimes) {
 		// TODO Auto-generated method stub
 		URLProtocolManager mgr = URLProtocolManager.getManager();
         if (Path.startsWith("hdfs://"))
@@ -90,13 +90,20 @@ public class ClientAPI {
                 framenum=container.getStream(i).getNumFrames();
                 break;
             }
-        }        
-        long targetFrame = (long) Math.floor(Double.valueOf(timeoftargetFrame)*fps);
-        System.out.println(framenum+"   "+fps+"  "+targetFrame);
-        //potplayer播放器会在视频开头自动添加一帧作为第0帧，所以在该播放器中视频的总帧数会比视频实际帧数多1帧，
-        //因此播放器中的第n帧对应的是视频中的第n-1帧，因此如果此处要与播放器的视频帧相匹配则targetFrame需要-1；
-        targetFrame--;
-		return String.valueOf(targetFrame);
+        }   
+        if(targetFrameTimes.length==2){
+        	long startFrameNo=(long) Math.floor(Double.valueOf(targetFrameTimes[0])*fps);
+        	long endFrameNo=(long) Math.floor(Double.valueOf(targetFrameTimes[1])*fps);
+            long size=endFrameNo-startFrameNo+1;
+          //potplayer播放器会在视频开头自动添加一帧作为第0帧，所以在该播放器中视频的总帧数会比视频实际帧数多1帧，
+            //因此播放器中的第n帧对应的是视频中的第n-1帧，因此如果此处要与播放器的视频帧相匹配则targetFrame需要-1；
+            startFrameNo--;
+            return new String[]{Path,String.valueOf(startFrameNo),String.valueOf(size)};
+        }else{
+        	long startFrameNo=(long) Math.floor(Double.valueOf(targetFrameTimes[0])*fps);
+        	startFrameNo--;
+        	return new String[]{Path,String.valueOf(startFrameNo)};
+        }	
 	}
 }
 

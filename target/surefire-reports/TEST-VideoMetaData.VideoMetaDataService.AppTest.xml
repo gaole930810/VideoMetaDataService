@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="VideoMetaData.VideoMetaDataService.AppTest" time="0.005" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="VideoMetaData.VideoMetaDataService.AppTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="D:\Java\jdk1.8.0_131\jre\bin"/>
@@ -27,7 +27,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="F:\ElpWorkspace\workspace1\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf602364899909139869.tmp"/>
+    <property name="classworlds.conf" value="F:\ElpWorkspace\workspace1\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8353424236725478141.tmp"/>
     <property name="sun.jnu.encoding" value="GBK"/>
     <property name="java.library.path" value="D:\Java\jdk1.8.0_131\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:/Java/jre1.8.0_131/bin/server;D:/Java/jre1.8.0_131/bin;D:/Java/jre1.8.0_131/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Java\jdk1.8.0_131\bin;D:\Java\jdk1.8.0_131\jre\bin;F:\apache-maven-3.5.0\bin;F:\hadoop-2.8.0\bin;C:\Program Files\MySQL\MySQL Server 5.5\bin;F:\eclipse;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -62,5 +62,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="VideoMetaData.VideoMetaDataService.AppTest" name="testApp" time="0.005"/>
+  <testcase classname="VideoMetaData.VideoMetaDataService.AppTest" name="testApp" time="0"/>
 </testsuite>
